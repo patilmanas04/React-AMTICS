@@ -102,9 +102,8 @@
   color: red;
 }
 
-.links a:hover, img:hover {
+.links a:hover, .right-arrow:hover {
   margin: 0 13px;
-
 }
 
 .links img {
