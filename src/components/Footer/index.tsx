@@ -43,22 +43,22 @@ const Footer = () => {
             <h3>Information Links</h3>
             <div className="links">
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 1
+                <img src={Arrow} className="right-arrow" /> Link 1
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 2
+                <img src={Arrow} className="right-arrow" /> Link 2
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 3
+                <img src={Arrow} className="right-arrow" /> Link 3
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 4
+                <img src={Arrow} className="right-arrow" /> Link 4
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 5
+                <img src={Arrow} className="right-arrow" /> Link 5
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 6
+                <img src={Arrow} className="right-arrow" /> Link 6
               </a>
             </div>
           </div>
@@ -67,22 +67,22 @@ const Footer = () => {
             <h3>Information Links</h3>
             <div className="links">
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 1
+                <img src={Arrow} className="right-arrow" /> Link 1
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 2
+                <img src={Arrow} className="right-arrow" /> Link 2
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 3
+                <img src={Arrow} className="right-arrow" /> Link 3
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 4
+                <img src={Arrow} className="right-arrow" /> Link 4
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 5
+                <img src={Arrow} className="right-arrow" /> Link 5
               </a>
               <a href="#">
-                <img src={Arrow} id="right-arrow" /> Link 6
+                <img src={Arrow} className="right-arrow" /> Link 6
               </a>
             </div>
           </div>
