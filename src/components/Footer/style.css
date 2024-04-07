@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.test {
+  height: 500px;
+}
+
+/* footer content */
+.outer {
+
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  background-color: #6420AA;
+  color: white;
+  height: 400px;
+  flex-shrink: 1;
+}
+
+/* left content ( logo and Amtics information ) */
+
+.left-content {
+  display: flex;
+}
+
+.AMTICS-logo {
+  width: 400px;
+  height: 400px;
+}
+
+.AMTICS-logo .circle {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  top: 50px;
+  left: 50px;
+  background-color: #DC9C20;
+  display: grid;
+  place-items: center;
+}
+
+.AMTICS-logo .circle #logo-img {
+  width: 70%;
+  z-index: 1;
+  position: relative;
+}
+
+.AMTICS-info {
+  margin: 20px 0 0 0;
+  width: 400px;
+  height: auto;
+
+}
+
+.AMTICS-info span:hover {
+  color: #FAAC1B
+}
+
+.Amtics-contact {
+  color: white;
+}
+
+
+.Amtics-contact:visited {
+  color: #FAAC1B;
+}
+
+/* information links middle part after the information */
+.link-info-middle {
+  width: 400px;
+  color: #FAAC1B;
+}
+
+/* information links part after the middle links */
+.link-info-right {
+  color: #FAAC1B;
+  width: 400px;
+}
+
+/* style of the links  */
+
+.links {
+  display: flex;
+  flex-direction: column;
+  line-height: 32px;
+}
+
+.links a {
+  width: fit-content;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.links a:focus {
+  color: gray;
+}
+
+.links a:active {
+  color: red;
+}
+
+.links a:hover, img:hover {
+  margin: 0 13px;
+
+}
+
+.links img {
+  position: relative;
+  height: auto;
+  width: 15px;
+  margin: -2px 10px;
+}
+
+/* bottom copy rights line out the footer*/
+.all-rights-reserved {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-color: #FAAC1B;
+  text-align: center;
+}
