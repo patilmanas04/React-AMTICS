@@ -89,6 +89,19 @@ const Input = styled.input`
 	width: 70px;
 	border: 0.8px solid #cccccc;
 	border-radius: 4px;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	-moz-appearance: textfield;
+
+	&:focus {
+		outline: none;
+		border: 0.8px solid #8b8b8b;
+	}
 `
 
 const CheckEligibilityButton = styled.button`
