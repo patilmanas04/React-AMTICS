@@ -96,6 +96,7 @@ const Input = styled.input`
 		margin: 0;
 	}
 
+	appearance: textfield;
 	-moz-appearance: textfield;
 
 	&:focus {
