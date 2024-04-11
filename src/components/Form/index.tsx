@@ -132,14 +132,24 @@ const Span = styled.span`
 `
 
 const Form = () => {
-	const [marks, setMarks] = useState({physics: 0, maths: 0, chemistry: 0, computer: 0})
+	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: "", computer: ""})
+	const [formValidated, setFormvalidated] = useState(true)
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 		const {physics, maths, chemistry, computer} = marks
-		const total = physics + maths + chemistry + computer
+
+		if(physics == "" || maths == "" || chemistry == "" || computer == "" || parseInt(physics)>100 || parseInt(maths)>100 || parseInt(chemistry)>100 || parseInt(computer)>100 || parseInt(physics)<0 || parseInt(maths)<0 || parseInt(chemistry)<0 || parseInt(computer)<0){
+			setFormvalidated(false)
+			return
+		}
+		else{
+			setFormvalidated(true)
+		}
+
+		const total = parseInt(physics) + parseInt(maths) + parseInt(chemistry) + parseInt(computer)
 		const percentage = (total / 400) * 100
-		if(physics>=40 && maths>=40 && chemistry>=40 && computer>=40 && percentage>=40){
+		if(parseInt(physics)>=40 && parseInt(maths)>=40 && parseInt(chemistry)>=40 && parseInt(computer)>=40 && percentage>=40){
 			alert("You are eligible for the admission")
 		}
 		else{
@@ -182,25 +192,25 @@ const Form = () => {
 						<TableRow>
 							<TableCell>Physics</TableCell>
 							<TableCell>
-								<Input type="number" name="physics" id="physics" onChange={onChange} required/><Span>/ 100</Span>
+								<Input type="number" name="physics" id="physics" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Maths</TableCell>
 							<TableCell>
-								<Input type="number" name="maths" id="maths" onChange={onChange} required/><Span>/ 100</Span>
+								<Input type="number" name="maths" id="maths" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Chemistry</TableCell>
 							<TableCell>
-								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} required/><Span>/ 100</Span>
+								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Computer</TableCell>
 							<TableCell>
-								<Input type="number" name="computer" id="computer" onChange={onChange} required/><Span>/ 100</Span>
+								<Input type="number" name="computer" id="computer" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
 							</TableCell>
 						</TableRow>
 					</TableBody>
