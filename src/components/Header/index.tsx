@@ -47,7 +47,7 @@ const Header = () => {
   return (
     <Wrapper>
       <CollegeLogo src={clglogo} alt="clglogo" />
-      <CollegeName>Asha M. Tarsadia Institue of Computer Science and Technology</CollegeName>
+      <CollegeName>Asha M. Tarsadia Institute of Computer Science and Technology</CollegeName>
       <UniversityLogo src={unilogo} alt="unilogo" />
     </Wrapper>
   );
