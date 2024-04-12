@@ -1,123 +1,168 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-.test {
-  height: 500px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* footer content */
-.outer {
-
-  position: relative;
-  font-family: "Rubik", sans-serif;
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-  background-color: #6420AA;
-  color: white;
-  height: 400px;
-  flex-shrink: 1;
-}
-
-/* left content ( logo and Amtics information ) */
-
-.left-content {
-  display: flex;
-}
-
-.AMTICS-logo {
-  width: 400px;
-  height: 400px;
-}
-
-.AMTICS-logo .circle {
-  position: absolute;
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  top: 50px;
-  left: 50px;
-  background-color: #DC9C20;
-  display: grid;
-  place-items: center;
-}
-
-.AMTICS-logo .circle #logo-img {
-  width: 70%;
-  z-index: 1;
-  position: relative;
-}
-
-.AMTICS-info {
-  margin: 20px 0 0 0;
-  width: 400px;
+.footer-content {
+  /* position: absolute;
+  bottom: 0; */
+  width: 100%;
   height: auto;
-
-}
-
-.AMTICS-info span:hover {
-  color: #FAAC1B
-}
-
-.Amtics-contact {
-  color: white;
-}
-
-
-.Amtics-contact:visited {
-  color: #FAAC1B;
-}
-
-/* information links middle part after the information */
-.link-info-middle {
-  width: 400px;
-  color: #FAAC1B;
-}
-
-/* information links part after the middle links */
-.link-info-right {
-  color: #FAAC1B;
-  width: 400px;
-}
-
-/* style of the links  */
-
-.links {
   display: flex;
-  flex-direction: column;
-  line-height: 32px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  gap: 10px;
+  background-color: #3b3285;
+  color: white;
+  padding: 10px 0;
 }
 
-.links a {
-  width: fit-content;
+/* logo css start with fully responsively */
+
+.footer-content .logo img {
+  width: 180px;
+  height: auto;
+  padding: 20px 0 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content .logo img {
+    display: block;
+    margin: 0 auto;
+    width: 25%;
+    padding: 0;
+  }
+}
+
+@media (min-width:768px) and (max-width: 820px) {
+  .footer-content .logo img {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    padding: 0;
+  }
+}
+
+@media (min-width:820px) and (max-width: 991px) {
+  .footer-content .logo img {
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    padding: 0;
+  }
+}
+
+/* CSS End */
+
+/* information content css start with fully responsively */
+.footer-content .info {
+  margin: 0 20px 0 20px;
+}
+
+.footer-content .info p {
+  font-size: 16px;
+}
+.amtics-website-link{
   color: white;
   text-decoration: none;
-  transition: all 0.3s;
+  padding-left: 5px;
+  letter-spacing: 1px;
+}
+.amtics-website-link:hover{
+  color: #FAAC1B;
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .footer-content .info {
+    margin: 0 20px 0 20px;
+  }
+
+  .footer-content .info p {
+    font-size: 13px;
+    padding: 0 10px;
+  }
 }
 
-.links a:focus {
-  color: gray;
+@media (min-width:768px) and (max-width: 820px) {
+  .footer-content .info {
+    margin: 0 auto;
+  }
+
+  .footer-content .info p {
+    font-size: 14px;
+  }
 }
 
-.links a:active {
-  color: red;
+@media (min-width:820px) and (max-width: 990px) {
+  .footer-content .info {
+    margin: 0 auto;
+  }
 }
 
-.links a:hover, .right-arrow:hover {
-  margin: 0 13px;
-}
+/* css end  */
 
-.links img {
-  position: relative;
+/* information link 1 content css with fully responsively */
+.information-1 {
   height: auto;
-  width: 15px;
-  margin: -2px 10px;
+  margin: 0 20px;
 }
 
-/* bottom copy rights line out the footer*/
-.all-rights-reserved {
-  position: absolute;
+.information-1 .top-header-1 {
+  word-spacing: 2px;
+  letter-spacing: .5px;
+  font-style: normal;
+  color: #FAAC1B;
+}
+
+.information-1 .information-link-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.information-1 .information-link-1 a {
+  color: white;
+  width: fit-content;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.2s;
+  line-height: 30px;
+}
+
+.information-1 .information-link-1 a img {
+  width: 15px;
+  padding: 0 10px;
+  height: auto;
+}
+
+.information-1 .information-link-1 a:hover {
+  padding-left: 5px;
+  color: #FAAC1B;
+  /* text-decoration: underline; */
+}
+
+@media (max-width:492px) {
+  .information-1 {
+    margin: 0 20px;
+  }
+}
+
+/* css end */
+
+.copy-right-line {
   width: 100%;
-  height: 50px;
-  background-color: #FAAC1B;
+  font-size: 15px;
+  position: relative;
+  margin-bottom: -10px;
   text-align: center;
+  background-color: #FAAC1B;
+  color: #3b3285;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  font-weight: 500;
+}
+@media screen and (max-width:480px){
+  .copy-right-line p{
+    font-size: .8rem;
+  }
 }
