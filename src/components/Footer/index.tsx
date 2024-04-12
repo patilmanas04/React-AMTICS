@@ -1,6 +1,6 @@
 import "./style.css";
 import Logo from "../../images/logo.png";
-import Link from "../../images/right-arrow.svg";
+import Link from "../../images/arrowhead.png";
 
 const index = () => {
   return (
@@ -25,7 +25,11 @@ const index = () => {
             <p>Ph.: +91 - 1234567890</p>
             <p>
               Email :{" "}
-              <a href="https://www.utu.ac.in/AMTICS/" target="_blank" className="amtics-website-link">
+              <a
+                href="https://www.utu.ac.in/AMTICS/"
+                target="_blank"
+                className="amtics-website-link"
+              >
                 amtica@utu.ac.in
               </a>
             </p>
@@ -88,9 +92,9 @@ const index = () => {
               </a>
             </div>
           </div>
-        <div className="copy-right-line">
-         <p> © 2024. All Rights Reserved by AMTICS</p>
         </div>
+        <div className="copy-right-line">
+          <p> © 2024. All Rights Reserved by AMTICS</p>
         </div>
       </footer>
     </>
