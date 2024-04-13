@@ -23,5 +23,4 @@ Welcome to the College Admission Eligibility Checker, a web application designed
 - **Name:** Asha M. Tarsadia Institute of Computer Science and Technology
 - **University:** Uka Tarsadia University
 - **Location:** Surat, Gujarat, India
-- **Website:** [college-website.com](link-to-college-website)
-- **Contact:** [college-email@example.com](mailto:college-email@example.com)
+- **Website:** [utu.ac.in/AMTICS](https://www.utu.ac.in/AMTICS/)
