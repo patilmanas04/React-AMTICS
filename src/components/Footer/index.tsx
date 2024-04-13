@@ -1,100 +1,104 @@
-import React from "react";
-import './style.css'
+import "./style.css";
 import Logo from "../../images/logo.png";
-import Arrow from "../../images/right-arrow.svg";
+import Right_arrow from "../../images/right-arrow.svg";
 
-const Footer = () => {
+const index = () => {
   return (
+    // Footer section
     <>
       <footer>
-        <div className="outer">
-          <div className="left-content">
-            <div className="AMTICS-logo">
-              
-              <div className="circle">
-              <img src={Logo} id="logo-img" />
-              </div>
+        <div className="footer-content">
+          {/* Logo */}
+          <div className="logo">
+            <img src={Logo} alt="" />
+          </div>
+
+          {/* Information */}
+          <div className="info">
+            <p>Member Secretary</p>
+            <p>Admission Committee for Professional Courses</p>
+            <p>
+              Uka Tarsadia University Maliba Campus, Gopal Vidyanagar,
+              Bardoli-Mahuva Road, Tarsadia - 394350
+            </p>
+            <p>Tal : Mahuva Dist: Surat Gujarat, INDIA</p>
+            <p>Ph.: +91 - 1234567890</p>
+            <p>
+              Email :{" "}
+              <a
+                href="https://www.utu.ac.in/AMTICS/"
+                target="_blank"
+                className="amtics-website-link"
+              >
+                amtica@utu.ac.in
+              </a>
+            </p>
+          </div>
+
+          {/* Information Link content -1 */}
+          <div className="information-1">
+            <div className="top-header-1">
+              <h2>Information Link</h2>
             </div>
-
-            <div className="AMTICS-info">
-              <p>Member Secretary</p>
-              <p>Admission Committee for Professional Courses</p>
-              <p>
-                Uka Tarsadia University Maliba Campus, Gopal Vidyanagar,
-                Bardoli-Mahuva Road, Tarsadi - 394 350.{" "}
-              </p>
-              <p>Tal: Mahuva Dist: Surat Gujarat, INDIA</p>
-
-              <p>Ph.: <span>+91-0000000000</span></p>
-              <p>
-                Email:{" "}
-                <a
-                  href="https://www.utu.ac.in/AMTICS/"
-                  target="_blank"
-                  className="Amtics-contact"
-                >
-                  amtics@utu.ac.in
-                </a>
-              </p>
+            <div className="information-link-1">
+              <a href="#">
+                <img src={Right_arrow} />
+                Link
+              </a>
+              <a href="#">
+                <img src={ Right_arrow} />
+                Link
+              </a>
+              <a href="#">
+                <img src={ Right_arrow} />
+                Link
+              </a>
+              <a href="#">
+                <img src={ Right_arrow} />
+                Link
+              </a>
+              <a href="#">
+                <img src={ Right_arrow} />
+                Link
+              </a>
             </div>
           </div>
 
-          <div className="link-info-middle">
-            <h3>Information Links</h3>
-            <div className="links">
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 1
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 2
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 3
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 4
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 5
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 6
-              </a>
+          {/* Information Link content-2 */}
+          <div className="information-1">
+            <div className="top-header-1">
+              <h2>Information Link</h2>
             </div>
-          </div>
-
-          <div className="link-info-right">
-            <h3>Information Links</h3>
-            <div className="links">
+            <div className="information-link-1">
               <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 1
+                <img src={ Right_arrow} />
+                Link
               </a>
               <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 2
+                <img src={ Right_arrow} />
+                Link
               </a>
               <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 3
+                <img src={ Right_arrow} />
+                Link
               </a>
               <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 4
+                <img src={ Right_arrow} />
+                Link
               </a>
               <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 5
-              </a>
-              <a href="#">
-                <img src={Arrow} className="right-arrow" /> Link 6
+                <img src={ Right_arrow} />
+                Link
               </a>
             </div>
           </div>
         </div>
-        <div className="all-rights-reserved">
-          <p>
-            © 2024 All right reserved by <b>AMTICS</b>
-          </p>
+        <div className="copy-right-line">
+          <p> © 2024. All Rights Reserved by AMTICS</p>
         </div>
       </footer>
     </>
   );
 };
 
-export default Footer;
+export default index;
