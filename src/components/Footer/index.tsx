@@ -1,6 +1,6 @@
 import "./style.css";
 import Logo from "../../images/logo.png";
-import Link from "../../images/arrowhead.png";
+import Right_arrow from "../../images/right-arrow.svg";
 
 const index = () => {
   return (
@@ -42,23 +42,23 @@ const index = () => {
             </div>
             <div className="information-link-1">
               <a href="#">
-                <img src={Link} />
+                <img src={Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
             </div>
@@ -71,23 +71,23 @@ const index = () => {
             </div>
             <div className="information-link-1">
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
               <a href="#">
-                <img src={Link} />
+                <img src={ Right_arrow} />
                 Link
               </a>
             </div>

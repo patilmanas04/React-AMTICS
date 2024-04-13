@@ -130,9 +130,9 @@
 }
 
 .information-1 .information-link-1 a img {
-  width: 15px;
+  width: auto;
   padding: 0 10px;
-  height: auto;
+  height: 14px  
 }
 
 .information-1 .information-link-1 a:hover {
