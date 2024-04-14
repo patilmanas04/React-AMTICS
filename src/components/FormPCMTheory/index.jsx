@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
+import EligibiltyContext from "../../contexts/EligibilityContext"
 
 const FormWrapper = styled.div`
 	display: flex;
@@ -85,12 +87,13 @@ const TableRow = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 10px 0;
 	min-width: 300px;
 `
 
 const TableCell = styled.div`
 	width: 50%;
+	padding: 0 20px;
 `
 
 const Input = styled.input`
@@ -135,34 +138,43 @@ const Span = styled.span`
 	font-weight: normal;
 `
 
-const Form = () => {
-	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: ""})
+const FormPCMTheory = (props) => {
+	const navigate = useNavigate()
+
+	const context = useContext(EligibiltyContext)
+	const { CheckEligibilityForPCMTheory } = context
+	
+	const { marks, setMarks, setCategory } = props
 	const [formValidated, setFormvalidated] = useState(true)
+	
+	const categoryRef = useRef(null)
+	
+	const onChange = (e) => {
+		setMarks({...marks, [e.target.name]: parseInt(e.target.value)})
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
 		const {physics, maths, chemistry} = marks
 
-		if(physics == "" || maths == "" || chemistry == "" || parseInt(physics)>100 || parseInt(maths)>100 || parseInt(chemistry)>100 || parseInt(physics)<0 || parseInt(maths)<0 || parseInt(chemistry)<0){
+		if(physics == "" || maths == "" || chemistry == "" || physics>100 || maths>100 || chemistry>100 || physics<0 || maths<0 || chemistry<0){
 			setFormvalidated(false)
 			return
 		}
 		else{
 			setFormvalidated(true)
 		}
-
-		const total = parseInt(physics) + parseInt(maths) + parseInt(chemistry)
-		const percentage = (total / 300) * 100
-		if(parseInt(physics)>=40 && parseInt(maths)>=40 && parseInt(chemistry)>=40 && percentage>=40){
+		console.log(marks)
+		const category = categoryRef.current.value
+		setCategory(category)
+		const isEligible = CheckEligibilityForPCMTheory(marks, category)
+		if(isEligible){
 			alert("You are eligible for the admission")
 		}
 		else{
-			alert("You are not eligible for the admission")
+			navigate("/pcmtheoryandpractical")
 		}
-	}
-
-	const onChange = (e) => {
-		setMarks({...marks, [e.target.name]: e.target.value})
 	}
 
 	return (
@@ -175,11 +187,10 @@ const Form = () => {
 					</Select>
 				</OptionWrapper>
 				<OptionWrapper>
-					<Select name="category" id="category">
+					<Select name="category" id="category" ref={categoryRef}>
 						<Option value="general">General</Option>
 						<Option value="sebc">SEBC</Option>
-						<Option value="sc">SC</Option>
-						<Option value="st">ST</Option>
+						<Option value="sc/st">SC/ST</Option>
 					</Select>
 				</OptionWrapper>
 			</Options>
@@ -190,7 +201,7 @@ const Form = () => {
 				<FormTable>
 					<TableHead>
 						<TableHeading>Subject</TableHeading>
-						<TableHeading>Marks</TableHeading>
+						<TableHeading>Theory Marks</TableHeading>
 					</TableHead>
 					<TableBody>
 						<TableRow>
@@ -220,4 +231,4 @@ const Form = () => {
 	)
 }
 
-export default Form
+export default FormPCMTheory
