@@ -139,7 +139,7 @@ const Form = () => {
 	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: ""})
 	const [formValidated, setFormvalidated] = useState(true)
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = (e) => {
 		e.preventDefault()
 		const {physics, maths, chemistry} = marks
 
@@ -161,7 +161,7 @@ const Form = () => {
 		}
 	}
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onChange = (e) => {
 		setMarks({...marks, [e.target.name]: e.target.value})
 	}
 
