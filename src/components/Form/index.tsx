@@ -124,6 +124,10 @@ const CheckEligibilityButton = styled.button`
 	color: white;
 	border: none;
 	cursor: pointer;
+
+	&:hover{
+		background-color: #C7001E;
+	}
 `
 
 const Span = styled.span`
@@ -132,14 +136,14 @@ const Span = styled.span`
 `
 
 const Form = () => {
-	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: "", computer: ""})
+	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: ""})
 	const [formValidated, setFormvalidated] = useState(true)
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
-		const {physics, maths, chemistry, computer} = marks
+		const {physics, maths, chemistry} = marks
 
-		if(physics == "" || maths == "" || chemistry == "" || computer == "" || parseInt(physics)>100 || parseInt(maths)>100 || parseInt(chemistry)>100 || parseInt(computer)>100 || parseInt(physics)<0 || parseInt(maths)<0 || parseInt(chemistry)<0 || parseInt(computer)<0){
+		if(physics == "" || maths == "" || chemistry == "" || parseInt(physics)>100 || parseInt(maths)>100 || parseInt(chemistry)>100 || parseInt(physics)<0 || parseInt(maths)<0 || parseInt(chemistry)<0){
 			setFormvalidated(false)
 			return
 		}
@@ -147,9 +151,9 @@ const Form = () => {
 			setFormvalidated(true)
 		}
 
-		const total = parseInt(physics) + parseInt(maths) + parseInt(chemistry) + parseInt(computer)
-		const percentage = (total / 400) * 100
-		if(parseInt(physics)>=40 && parseInt(maths)>=40 && parseInt(chemistry)>=40 && parseInt(computer)>=40 && percentage>=40){
+		const total = parseInt(physics) + parseInt(maths) + parseInt(chemistry)
+		const percentage = (total / 300) * 100
+		if(parseInt(physics)>=40 && parseInt(maths)>=40 && parseInt(chemistry)>=40 && percentage>=40){
 			alert("You are eligible for the admission")
 		}
 		else{
@@ -205,12 +209,6 @@ const Form = () => {
 							<TableCell>Chemistry</TableCell>
 							<TableCell>
 								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
-							</TableCell>
-						</TableRow>
-						<TableRow>
-							<TableCell>Computer</TableCell>
-							<TableCell>
-								<Input type="number" name="computer" id="computer" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
 							</TableCell>
 						</TableRow>
 					</TableBody>
