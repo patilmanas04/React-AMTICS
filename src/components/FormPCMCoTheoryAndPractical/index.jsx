@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
 import EligibiltyContext from "../../contexts/EligibilityContext"
 
 const FormWrapper = styled.div`
@@ -55,9 +54,19 @@ const FormTable = styled.div`
 	border: 0.8px solid #cccccc;
 	border-radius: 4px;
 	font-weight: 500;
+	overflow-x: auto;
 
-	@media (max-width: 300px){
-		overflow-x: scroll;
+	&::-webkit-scrollbar{
+		height: 7px;
+	}
+
+	&::-webkit-scrollbar-track{
+		background: #f1f1f1;
+	}
+
+	&::-webkit-scrollbar-thumb{
+		background: #888;
+		border-radius: 999px;
 	}
 `
 
@@ -67,7 +76,7 @@ const TableHead = styled.div`
 	align-items: center;
 	border-bottom: 0.8px solid #cccccc;
 	height: 50px;
-	min-width: 300px;
+	min-width: 520px;
 `
 
 const TableHeading = styled.h4`
@@ -81,6 +90,7 @@ const TableBody = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 10px 0;
+	min-width: 520px;
 `
 
 const TableRow = styled.div`
@@ -138,14 +148,11 @@ const Span = styled.span`
 	font-weight: normal;
 `
 
-const FormPCMTheory = (props) => {
-	const navigate = useNavigate()
-
+const FormPCMTheory = () => {
 	const context = useContext(EligibiltyContext)
-	const { CheckEligibilityForPCMTheory } = context
+	const { checkFormValidity, CheckEligibilityForPCMCoTheoryAndPractical } = context
 	
-	const { marks, setMarks, setCategory } = props
-	const [formValidated, setFormvalidated] = useState(true)
+	const [marks, setMarks] = useState({physics: 0, physicsPractical: 0, maths: 0, chemistry: 0, chemistryPractical: 0, computer: 0, computerPractical: 0})
 	
 	const categoryRef = useRef(null)
 	
@@ -155,25 +162,18 @@ const FormPCMTheory = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-
-		const {physics, maths, chemistry} = marks
-
-		if(physics == "" || maths == "" || chemistry == "" || physics>100 || maths>100 || chemistry>100 || physics<0 || maths<0 || chemistry<0){
-			setFormvalidated(false)
+		const isFormValidated = checkFormValidity(e)
+		console.log(isFormValidated)
+		if(!isFormValidated){
 			return
 		}
-		else{
-			setFormvalidated(true)
-		}
-		console.log(marks)
 		const category = categoryRef.current.value
-		setCategory(category)
-		const isEligible = CheckEligibilityForPCMTheory(marks, category)
+		const isEligible = CheckEligibilityForPCMCoTheoryAndPractical(marks, category)
 		if(isEligible){
-			alert("You are eligible for the admission")
+			alert("You are eligible for admission")
 		}
 		else{
-			navigate("/pcmtheoryandpractical")
+			alert("You are not eligible for admission")
 		}
 	}
 
@@ -202,24 +202,43 @@ const FormPCMTheory = (props) => {
 					<TableHead>
 						<TableHeading>Subject</TableHeading>
 						<TableHeading>Theory Marks</TableHeading>
+						<TableHeading>Practical Marks</TableHeading>
 					</TableHead>
 					<TableBody>
 						<TableRow>
 							<TableCell>Physics</TableCell>
 							<TableCell>
-								<Input type="number" name="physics" id="physics" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="physics" id="physics" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="physicsPractical" id="physicsPractical" onChange={onChange} required/><Span>/ 50</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Maths</TableCell>
 							<TableCell>
-								<Input type="number" name="maths" id="maths" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="maths" id="maths" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="mathsPractical" id="mathsPractical" disabled/>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Chemistry</TableCell>
 							<TableCell>
-								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="chemistryPractical" id="chemistryPractical" onChange={onChange} required/><Span>/ 50</Span>
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>Computer</TableCell>
+							<TableCell>
+								<Input type="number" name="computer" id="computer" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="computerPractical" id="computerPractical" onChange={onChange} required/><Span>/ 50</Span>
 							</TableCell>
 						</TableRow>
 					</TableBody>
