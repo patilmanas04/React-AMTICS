@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import styled from "styled-components"
+import EligibiltyContext from "../../contexts/EligibilityContext"
 
 const FormWrapper = styled.div`
 	display: flex;
@@ -53,9 +54,19 @@ const FormTable = styled.div`
 	border: 0.8px solid #cccccc;
 	border-radius: 4px;
 	font-weight: 500;
+	overflow-x: auto;
 
-	@media (max-width: 300px){
-		overflow-x: scroll;
+	&::-webkit-scrollbar{
+		height: 7px;
+	}
+
+	&::-webkit-scrollbar-track{
+		background: #f1f1f1;
+	}
+
+	&::-webkit-scrollbar-thumb{
+		background: #888;
+		border-radius: 999px;
 	}
 `
 
@@ -65,7 +76,7 @@ const TableHead = styled.div`
 	align-items: center;
 	border-bottom: 0.8px solid #cccccc;
 	height: 50px;
-	min-width: 300px;
+	min-width: 520px;
 `
 
 const TableHeading = styled.h4`
@@ -79,18 +90,20 @@ const TableBody = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 10px 0;
+	min-width: 520px;
 `
 
 const TableRow = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 10px 0;
 	min-width: 300px;
 `
 
 const TableCell = styled.div`
 	width: 50%;
+	padding: 0 20px;
 `
 
 const Input = styled.input`
@@ -124,6 +137,10 @@ const CheckEligibilityButton = styled.button`
 	color: white;
 	border: none;
 	cursor: pointer;
+
+	&:hover{
+		background-color: #C7001E;
+	}
 `
 
 const Span = styled.span`
@@ -131,34 +148,33 @@ const Span = styled.span`
 	font-weight: normal;
 `
 
-const Form = () => {
-	const [marks, setMarks] = useState({physics: "", maths: "", chemistry: "", computer: ""})
-	const [formValidated, setFormvalidated] = useState(true)
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-		const {physics, maths, chemistry, computer} = marks
-
-		if(physics == "" || maths == "" || chemistry == "" || computer == "" || parseInt(physics)>100 || parseInt(maths)>100 || parseInt(chemistry)>100 || parseInt(computer)>100 || parseInt(physics)<0 || parseInt(maths)<0 || parseInt(chemistry)<0 || parseInt(computer)<0){
-			setFormvalidated(false)
-			return
-		}
-		else{
-			setFormvalidated(true)
-		}
-
-		const total = parseInt(physics) + parseInt(maths) + parseInt(chemistry) + parseInt(computer)
-		const percentage = (total / 400) * 100
-		if(parseInt(physics)>=40 && parseInt(maths)>=40 && parseInt(chemistry)>=40 && parseInt(computer)>=40 && percentage>=40){
-			alert("You are eligible for the admission")
-		}
-		else{
-			alert("You are not eligible for the admission")
-		}
+const FormPCMTheory = () => {
+	const context = useContext(EligibiltyContext)
+	const { checkFormValidity, CheckEligibilityForPCMCoTheoryAndPractical } = context
+	
+	const [marks, setMarks] = useState({physics: 0, physicsPractical: 0, maths: 0, chemistry: 0, chemistryPractical: 0, computer: 0, computerPractical: 0})
+	
+	const categoryRef = useRef(null)
+	
+	const onChange = (e) => {
+		setMarks({...marks, [e.target.name]: parseInt(e.target.value)})
 	}
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setMarks({...marks, [e.target.name]: e.target.value})
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		const isFormValidated = checkFormValidity(e)
+		console.log(isFormValidated)
+		if(!isFormValidated){
+			return
+		}
+		const category = categoryRef.current.value
+		const isEligible = CheckEligibilityForPCMCoTheoryAndPractical(marks, category)
+		if(isEligible){
+			alert("You are eligible for admission")
+		}
+		else{
+			alert("You are not eligible for admission")
+		}
 	}
 
 	return (
@@ -171,11 +187,10 @@ const Form = () => {
 					</Select>
 				</OptionWrapper>
 				<OptionWrapper>
-					<Select name="category" id="category">
+					<Select name="category" id="category" ref={categoryRef}>
 						<Option value="general">General</Option>
 						<Option value="sebc">SEBC</Option>
-						<Option value="sc">SC</Option>
-						<Option value="st">ST</Option>
+						<Option value="sc/st">SC/ST</Option>
 					</Select>
 				</OptionWrapper>
 			</Options>
@@ -186,31 +201,44 @@ const Form = () => {
 				<FormTable>
 					<TableHead>
 						<TableHeading>Subject</TableHeading>
-						<TableHeading>Marks</TableHeading>
+						<TableHeading>Theory Marks</TableHeading>
+						<TableHeading>Practical Marks</TableHeading>
 					</TableHead>
 					<TableBody>
 						<TableRow>
 							<TableCell>Physics</TableCell>
 							<TableCell>
-								<Input type="number" name="physics" id="physics" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="physics" id="physics" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="physicsPractical" id="physicsPractical" onChange={onChange} required/><Span>/ 50</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Maths</TableCell>
 							<TableCell>
-								<Input type="number" name="maths" id="maths" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="maths" id="maths" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="mathsPractical" id="mathsPractical" disabled/>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Chemistry</TableCell>
 							<TableCell>
-								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="chemistry" id="chemistry" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="chemistryPractical" id="chemistryPractical" onChange={onChange} required/><Span>/ 50</Span>
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Computer</TableCell>
 							<TableCell>
-								<Input type="number" name="computer" id="computer" onChange={onChange} className={(!formValidated)?"error":""} required/><Span>/ 100</Span>
+								<Input type="number" name="computer" id="computer" onChange={onChange} required/><Span>/ 100</Span>
+							</TableCell>
+							<TableCell>
+								<Input type="number" name="computerPractical" id="computerPractical" onChange={onChange} required/><Span>/ 50</Span>
 							</TableCell>
 						</TableRow>
 					</TableBody>
@@ -222,4 +250,4 @@ const Form = () => {
 	)
 }
 
-export default Form
+export default FormPCMTheory
