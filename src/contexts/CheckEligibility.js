@@ -1,79 +1,76 @@
 import EligibiltyContext from "./EligibilityContext"
 
 const CheckEligibility = (props) => {
-    // 1st Case: PCM Theory Eligibility
-    const CheckEligibilityForPCMTheory = (marks, category) => {
+    const checkFormValidity = (e) => {
+		const elements = Array.from(e.target.elements).filter((element) => element.tagName === "INPUT" && element.name !== "mathsPractical")
+		elements.forEach((element) => {
+			if(!(element.name.toLowerCase().includes("practical"))){
+				if(element.value < 0 || element.value > 100){
+					element.classList.add("error")
+				}
+				else{
+					element.classList.remove("error")
+				}
+			}
+			else{
+				if(element.value < 0 || element.value > 50){
+					element.classList.add("error")
+				}
+				else{
+					element.classList.remove("error")
+				}
+			}
+		})
+
+		const errorElements = elements.filter((element) => element.classList.contains("error"))
+		if(errorElements.length > 0){
+			return false
+		}
+		return true
+	}
+
+    const CheckEligibilityForPCMCoTheoryAndPractical = (marks, category) => {
+        const {physics, physicsPractical, maths, chemistry, chemistryPractical, computer, computerPractical} = marks
+
         switch(category){
             case "general":
-                if(marks.physics >= 45 && marks.maths >= 45 && marks.chemistry >= 45){
-                    return true
+                if(physics >= 45 && maths >= 45 && chemistry >= 45 && computer>=45){
+                    const totalPhysicsMarks = physics + physicsPractical
+                    const totalChemistryMarks = chemistry + chemistryPractical
+                    const totalComputerMarks = computer + computerPractical
+                    if(totalChemistryMarks >= 67.5 && totalPhysicsMarks >= 67.5 && totalComputerMarks >= 67.5 && maths >= 45){
+                        return true
+                    }
                 }
                 return false
-            case "sebc":
-                if(marks.physics >= 45 && marks.maths >= 45 && marks.chemistry >= 45){
-                    return true
+            case "sebs":
+                if(physics >= 45 && maths >= 45 && chemistry >= 45 && computer>=45){
+                    const totalPhysicsMarks = physics + physicsPractical
+                    const totalChemistryMarks = chemistry + chemistryPractical
+                    const totalComputerMarks = computer + computerPractical
+                    if(totalChemistryMarks >= 67.5 && totalPhysicsMarks >= 67.5 && totalComputerMarks >= 67.5 && maths >= 45){
+                        return true
+                    }
                 }
                 return false
             case "sc/st":
-                if(marks.physics >= 40 && marks.maths >= 40 && marks.chemistry >= 40){
-                    return true
+                if(physics >= 40 && maths >= 40 && chemistry >= 40 && computer>=40){
+                    const totalPhysicsMarks = physics + physicsPractical
+                    const totalChemistryMarks = chemistry + chemistryPractical
+                    const totalComputerMarks = computer + computerPractical
+                    if(totalChemistryMarks >= 60 && totalPhysicsMarks >= 60 && totalComputerMarks >= 60 && maths >= 40){
+                        return true
+                    }
                 }
                 return false
             default:
                 return false
         }
     }
-
-    // 2nd Case: PCM Theory + Practical Eligibility
-    const CheckEligibilityForPCMTheoryAndPractical = (theoryAndPracticalMarks, category) => {
-        const {physics, maths, chemistry} = theoryAndPracticalMarks
-
-        switch(category){
-            case "general":
-                if(physics >= 67.5 && maths >= 45 && chemistry >= 67.5){
-                    return true
-                }
-                return false
-            case "sebc":
-                if(physics >= 67.5 && maths >= 45 && chemistry >= 67.5){
-                    return true
-                }
-                return false
-            case "sc/st":
-                if(physics >= 60 && maths >= 40 && chemistry >= 60){
-                    return true
-                }
-                return false
-            default:
-                return false
-        }
-    }
-
-    // 3rd Case: PMCo Theory + Practical Eligibility
-    const CheckEligibilityForPMCoTheoryAndPractical = (theoryAndPracticalMarks, category) => {
-        const {theoryMarks, practicalMarks} = theoryAndPracticalMarks
-        const coTotalMarks = theoryMarks + practicalMarks
-        switch(category){
-            case "general":
-                if(theoryMarks>=45 && coTotalMarks >= 67.5){
-                    return true
-                }
-                return false
-            case "sebc":
-                if(theoryMarks>=45 && coTotalMarks >= 67.5){
-                    return true
-                }
-                return false
-            case "sc/st":
-                if(theoryMarks>=40 && coTotalMarks >= 60){
-                    return true
-                }
-                return false
-        }
-    }
+    
 
     return(
-        <EligibiltyContext.Provider value={{CheckEligibilityForPCMTheory, CheckEligibilityForPCMTheoryAndPractical, CheckEligibilityForPMCoTheoryAndPractical}}>
+        <EligibiltyContext.Provider value={{checkFormValidity, CheckEligibilityForPCMCoTheoryAndPractical}}>
             {props.children}
         </EligibiltyContext.Provider>
     )

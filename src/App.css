@@ -9,3 +9,16 @@
 .error{
   border: 0.8px solid red !important;
 }
+
+body::-webkit-scrollbar{
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+  background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: #888;
+  border-radius: 999px;
+}
