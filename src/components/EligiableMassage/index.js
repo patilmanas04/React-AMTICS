@@ -1,14 +1,27 @@
 import Happy from "../../images/happy.png";
 import close from "../../images/close.png";
 import "./style.css";
+import React, { useState } from 'react';
 
-const index = () => {
+
+const Index = () => {
+  const [Hide, setHide] = useState(true);
+
+  const handleClick = () => {
+    setHide(false);
+  };
+
   return (
-    <>
-      <div className="fully_body">
+    <div style={{ display: Hide ? 'block' : 'none' }}>
+       <div className="fully_body">
         <div className="main_box">
-          <div className="close_icon">
-            <img src={close} alt="" className="cross" />
+          <div className="close_icon" >
+            <img
+              src={close}
+              alt=""
+              className="cross"
+              onClick={handleClick}
+            />
           </div>
 
           <div className="reaction_and_text">
@@ -25,14 +38,15 @@ const index = () => {
           </div>
           <div class="container">
             <div class="left-line"></div>
-            <div class="middle-name"><b>
-                UTU</b></div>
+            <div class="middle-name">
+              <b>UTU</b>
+            </div>
             <div class="right-line"></div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default index;
+export default Index;

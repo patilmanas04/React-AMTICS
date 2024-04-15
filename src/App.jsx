@@ -4,12 +4,17 @@ import Footer from './components/Footer';
 import CheckEligibility from './contexts/CheckEligibility';
 import './App.css';
 import { useState } from 'react';
+import EligibleMassage from './components/EligiableMassage/Index';
 
 function App() {
+	
 	return (
 		<>
 		<CheckEligibility>
 				<Header/>
+				<div className="alert">
+					<EligibleMassage/>
+				</div>
 				<FormPCMCoTheoryAndPractical/>
 				<Footer/>
 		</CheckEligibility>
