@@ -9,11 +9,16 @@
 .error{
   border: 0.8px solid red !important;
 }
-.alert {
-  position: fixed;
-  width: 100%;  
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* Add other styling properties as needed */
+
+body::-webkit-scrollbar{
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+  background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: #888;
+  border-radius: 999px;
 }
